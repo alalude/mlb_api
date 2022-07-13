@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -38,7 +39,6 @@ public class PlayerServiceImpl implements PlayerService{
         return playerRepository.findAll();
     }
 
-    // NEXT V V V V V V V
     @Override
     public Player findById(Integer playerId) {
 
@@ -48,5 +48,18 @@ public class PlayerServiceImpl implements PlayerService{
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no player with the ID provided.");
         }
         return optionalPlayer.get();
+    }
+
+    // NEXT V V V V V V V
+
+    @Override
+    public Iterable<Player> findByName(String playerName) {
+
+        List<Player> optionalPlayer = playerRepository.findByName(playerName);
+        if(optionalPlayer.isEmpty()){
+            // throw an exception if the name is invalid (my own addition)
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no player by the name provided.");
+        }
+        return playerRepository.findByName(playerName);
     }
 }

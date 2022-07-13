@@ -8,6 +8,7 @@ public interface PlayerService {
     Player update(PlayerDTO playerDTO);
     void delete(Integer playerId);
     Iterable<Player> findAll();
-    // NEXT V V V V V V V
     Player findById(Integer playerId);
+    // NEXT V V V V V V V
+    Iterable<Player> findByName(String playerName);
 }

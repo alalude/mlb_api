@@ -53,14 +53,13 @@ public class PlayerController {
 //        return optionalPlayer.get();
 //    }
 
-    // NEXT V V V V V V V
     @GetMapping("/{id}")
     public Player getPlayerById(@PathVariable("id") Integer id){
         return playerService.findById(id);
     }
 
-    // ------------------------------------------------------------------------
-//
+    // NEXT V V V V V V V
+//    Old way - before Service
 //    @GetMapping("/name/{name}")
 //    public Iterable<Player> getPlayerByName(@PathVariable("name") String name){
 //
@@ -74,6 +73,25 @@ public class PlayerController {
 //
 //        return playerRepository.findByName(name);
 //    }
+
+    //    Old way - intermediate solution with @RequestParam
+//    @GetMapping("/name")
+//    public Iterable<Player> getPlayerByName(@RequestParam String name) {
+//
+//        List<Player> optionalPlayer = playerRepository.findByName(name);
+//        if(optionalPlayer.isEmpty()){
+//            return null;
+//        }
+//
+//        return playerRepository.findByName(name);
+//    }
+
+    @GetMapping("/name")
+    public Iterable<Player> getPlayerByName(@RequestParam String name) {
+        return playerService.findByName(name);
+    }
+
+    // ------------------------------------------------------------------------
 //
 //    @PutMapping("/{id}")
 //    public Player updatePlayer(
