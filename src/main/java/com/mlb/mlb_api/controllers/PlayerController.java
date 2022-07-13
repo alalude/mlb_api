@@ -42,8 +42,7 @@ public class PlayerController {
         return playerService.findAll();
     }
 
-    // ------------------------------------------------------------------------
-
+//    Old way - before Service
 //    @GetMapping("/{id}")
 //    public Player getPlayerById(@PathVariable("id") Integer id){
 //
@@ -53,6 +52,14 @@ public class PlayerController {
 //        }
 //        return optionalPlayer.get();
 //    }
+
+    // NEXT V V V V V V V
+    @GetMapping("/{id}")
+    public Player getPlayerById(@PathVariable("id") Integer id){
+        return playerService.findById(id);
+    }
+
+    // ------------------------------------------------------------------------
 //
 //    @GetMapping("/name/{name}")
 //    public Iterable<Player> getPlayerByName(@PathVariable("name") String name){

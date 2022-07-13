@@ -5,6 +5,8 @@ import com.mlb.mlb_api.repositories.PlayerRepository;
 import com.mlb.mlb_api.repositories.entities.Player;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class PlayerServiceImpl implements PlayerService{
     private final PlayerRepository playerRepository;
@@ -28,14 +30,20 @@ public class PlayerServiceImpl implements PlayerService{
     public void delete(Integer playerId) {
 
     }
-// NEXT V V V V V V V
+
     @Override
     public Iterable<Player> findAll() {
         return playerRepository.findAll();
     }
 
+    // NEXT V V V V V V V
     @Override
     public Player findById(Integer playerId) {
-        return null;
+
+        Optional<Player> optionalPlayer = playerRepository.findById(playerId);
+        if(optionalPlayer.isEmpty()){
+            return null;
+        }
+        return optionalPlayer.get();
     }
 }

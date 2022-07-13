@@ -7,7 +7,7 @@ public interface PlayerService {
     Player save(PlayerDTO playerDTO);
     Player update(PlayerDTO playerDTO);
     void delete(Integer playerId);
-    // NEXT V V V V V V V
     Iterable<Player> findAll();
+    // NEXT V V V V V V V
     Player findById(Integer playerId);
 }
