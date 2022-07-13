@@ -3,7 +3,9 @@ package com.mlb.mlb_api.service;
 import com.mlb.mlb_api.controllers.dto.PlayerDTO;
 import com.mlb.mlb_api.repositories.PlayerRepository;
 import com.mlb.mlb_api.repositories.entities.Player;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Optional;
 
@@ -42,7 +44,8 @@ public class PlayerServiceImpl implements PlayerService{
 
         Optional<Player> optionalPlayer = playerRepository.findById(playerId);
         if(optionalPlayer.isEmpty()){
-            return null;
+            // throw an exception if the ID is invalid (my own addition)
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "There is no player with the ID provided.");
         }
         return optionalPlayer.get();
     }
