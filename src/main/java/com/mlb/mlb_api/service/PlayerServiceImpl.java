@@ -24,9 +24,35 @@ public class PlayerServiceImpl implements PlayerService{
         return playerRepository.save(player);
     }
 
+    // NEXT V V V V V V V
+
     @Override
-    public Player update(PlayerDTO playerDTO) {
-        return null;
+    public Player update(Integer id, PlayerDTO p) {
+
+        Optional<Player> playerToUpdateOptional = playerRepository.findById(id);
+
+        if (playerToUpdateOptional.isEmpty()) {
+            return null;
+        }
+
+        Player playerToUpdate = playerToUpdateOptional.get();
+        if (p.getAge() != null) {
+            playerToUpdate.setAge(p.getAge());
+        }
+
+        if (p.getRating() != null) {
+            playerToUpdate.setRating(p.getRating());
+        }
+
+        if (p.getName() != null) {
+            playerToUpdate.setName(p.getName());
+        }
+
+        if (p.getYearsOfExperience() != null) {
+            playerToUpdate.setYearsOfExperience(p.getYearsOfExperience());
+        }
+
+        return playerRepository.save(playerToUpdate);
     }
 
     @Override
@@ -49,8 +75,6 @@ public class PlayerServiceImpl implements PlayerService{
         }
         return optionalPlayer.get();
     }
-
-    // NEXT V V V V V V V
 
     @Override
     public Iterable<Player> findByName(String playerName) {

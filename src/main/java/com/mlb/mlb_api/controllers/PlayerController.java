@@ -58,7 +58,6 @@ public class PlayerController {
         return playerService.findById(id);
     }
 
-    // NEXT V V V V V V V
 //    Old way - before Service
 //    @GetMapping("/name/{name}")
 //    public Iterable<Player> getPlayerByName(@PathVariable("name") String name){
@@ -91,8 +90,9 @@ public class PlayerController {
         return playerService.findByName(name);
     }
 
-    // ------------------------------------------------------------------------
-//
+    // NEXT V V V V V V V
+
+//    Old way - before Service
 //    @PutMapping("/{id}")
 //    public Player updatePlayer(
 //            @PathVariable("id") Integer id,
@@ -117,6 +117,16 @@ public class PlayerController {
 //        }
 //        return playerRepository.save(playerToUpdate);
 //    }
+
+    @PutMapping("/{id}")
+    public Player updatePlayer(
+            @PathVariable("id") Integer playerId,
+            @RequestBody PlayerDTO playerDTO
+    ) {
+        return playerService.update(playerId, playerDTO);
+    }
+
+    // ------------------------------------------------------------------------
 //
 //    @DeleteMapping("/{id}")
 //    public Player deletePlayer(@PathVariable("id") Integer id) {
